@@ -54,6 +54,8 @@
   },
   "dependencies": {
     "regenerator-runtime": "^0.11.0",
-    "whatwg-fetch": "^2.0.3"
+    "vanilla-dialogs": "0.0.2",
+    "whatwg-fetch": "^2.0.3",
+    "wretch": "^0.2.0"
   }
 }

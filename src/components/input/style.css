@@ -1,0 +1,23 @@
+:local .wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+:local .input {
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 16px;
+  padding: 10px 0;
+  width: 100%;
+
+  @nest .is-active & {
+    border-color: #22a1c4;
+  }
+}
+
+:local .label {
+  font-size: 14px;
+
+  @nest .is-active & {
+    color: #22a1c4;
+  }
+}
