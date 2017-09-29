@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    "unicorn",
+    "no-use-extend-native",
+    "import",
+    "promise"
+  ],
+  "extends": [
+    "xo-space",
+    "xo-space/esnext",
+    "xo-space/browser",
+    "plugin:unicorn/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:promise/recommended"
+  ],
+  "rules": {
+    "semi": ["error", "never"]
+  }
+}
