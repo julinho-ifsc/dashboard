@@ -4,15 +4,22 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const OfflinePlugin = require('offline-plugin')
+// const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
+// const WebpackChunkHash = require('webpack-chunk-hash')
+// const InlineChunkManifestPlugin = require('inline-chunk-manifest-html-webpack-plugin')
 const cssnext = require('postcss-cssnext')
 const cssnano = require('cssnano')
 const easyImport = require('postcss-easy-import')
 const notifier = require('node-notifier')
 
-module.exports = {
-  entry: ['whatwg-fetch', 'regenerator-runtime/runtime', './src/app.js'],
+module.exports = env => ({
+  entry: {
+    app: './src/app.js',
+    vendor: ['offline-plugin/runtime', 'regenerator-runtime/runtime', 'wretch', 'whatwg-fetch']
+  },
   output: {
-    filename: 'bundle.[hash].js',
+    filename: '[name].[hash].js',
     path: path.resolve(__dirname, 'public'),
     publicPath: '/'
   },
@@ -21,28 +28,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['env'],
-              plugins: [
-                'transform-async-to-generator',
-                'transform-regenerator',
-                'transform-object-rest-spread'
-              ]
-            }
-          },
-          {
-            loader: 'eslint-loader',
-            options: {
-              fix: true,
-              cache: true,
-              formatter: require('eslint-formatter-pretty'),
-              emitError: true
-            }
-          }
-        ]
+        use: 'babel-loader'
       },
       {
         test: /\.css$/,
@@ -113,7 +99,7 @@ module.exports = {
         const error = errors[0]
 
         notifier.notify({
-          title: "Webpack error",
+          title: 'Webpack error',
           message: severity + ': ' + error.name,
           subtitle: error.file || ''
         })
@@ -121,6 +107,16 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': env.prod ? JSON.stringify('production'): JSON.stringify('development')
+    }),
+    new OfflinePlugin({
+      AppCache: false,
+      ServiceWorker: { events: true },
     })
   ]
-}
+})

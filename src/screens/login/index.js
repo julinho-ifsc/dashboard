@@ -1,6 +1,6 @@
 import {alert} from 'vanilla-dialogs'
 import loginForm from '../../components/login-form'
-import loginService from '../../services/login.js'
+import loginService from '../../services/login'
 import {UnauthorizedError, InternalServerError} from '../../services/errors'
 
 export default () => {
