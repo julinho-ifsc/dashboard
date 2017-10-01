@@ -112,20 +112,20 @@ module.exports = env => {
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': env.prod ? JSON.stringify('production'): JSON.stringify('development')
-      }),
-      new OfflinePlugin({
-        AppCache: false,
-        ServiceWorker: { events: true },
       })
     ]
   }
 
   if (env.prod) {
-    config.output.filename = '[name].[chunkhash].js';
+    config.output.filename = '[name].[chunkhash].js'
     config.plugins = [
       ...config.plugins,
+      new OfflinePlugin({
+        AppCache: false,
+        ServiceWorker: { events: true },
+      }),
       new webpack.HashedModuleIdsPlugin(),
-      new WebpackChunkHash()
+      new WebpackChunkHash(),
     ]
   }
 

@@ -1,6 +1,9 @@
 import 'whatwg-fetch'
 import 'regenerator-runtime/runtime'
 import './app.css'
+import Router from './core/router'
+import homeRoute from './routes/home'
+import loginRoute from './routes/login'
 
 async function main() {
   if (process.env.NODE_ENV === 'production') {
@@ -17,14 +20,10 @@ async function main() {
   }
 
   const app = document.getElementById('app')
-
-  if (window.sessionStorage.getItem('token')) {
-    const {default: homeScreen} = await import('./screens/home')
-    app.appendChild(homeScreen())
-    return
-  }
-  const {default: loginScreen} = await import('./screens/login')
-  app.appendChild(loginScreen())
+  const router = new Router(app)
+  router.handleDefault('/', homeRoute)
+  router.handleRoute('/login', loginRoute)
+  router.listen()
 }
 
 main()

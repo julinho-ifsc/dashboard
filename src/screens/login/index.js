@@ -1,6 +1,7 @@
 import {alert} from 'vanilla-dialogs'
 import loginForm from '../../components/login-form'
 import loginService from '../../services/login'
+import Router from '../../core/router'
 
 export default () => {
   const formElement = loginForm()
@@ -17,6 +18,7 @@ export default () => {
     try {
       const {token} = await loginService(email, password)
       window.sessionStorage.setItem('token', token)
+      Router.navigate('/')
     } catch (err) {
       if (err.name === 'UnauthorizedError') {
         await alert(err.message)
