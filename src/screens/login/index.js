@@ -1,7 +1,6 @@
 import {alert} from 'vanilla-dialogs'
 import loginForm from '../../components/login-form'
 import loginService from '../../services/login'
-import {UnauthorizedError, InternalServerError} from '../../services/errors'
 
 export default () => {
   const formElement = loginForm()
@@ -19,13 +18,13 @@ export default () => {
       const {token} = await loginService(email, password)
       window.sessionStorage.setItem('token', token)
     } catch (err) {
-      if (err.name === UnauthorizedError.name) {
+      if (err.name === 'UnauthorizedError') {
         await alert(err.message)
         passwordField.value = ''
         return
       }
 
-      if (err.name === InternalServerError.name) {
+      if (err.name === 'InternalServerError') {
         await alert(err.message)
         return
       }
