@@ -2,6 +2,7 @@ import {alert} from 'vanilla-dialogs'
 import Router from '../../core/router'
 import permissionsService from '../../services/permissions'
 import navbar from '../../components/navbar'
+import container from '../../components/container'
 
 const routes = [
   {
@@ -49,6 +50,11 @@ export default async function() {
       .filter(route => allowedResources.includes(route.href.substring(2)))
 
     wrapper.appendChild(navbar(allowedRoutes))
+
+    const title = document.createElement('h1')
+    title.textContent = 'Bem vindo!'
+
+    wrapper.appendChild(container([title]))
 
   } catch (err) {
     if (err.name === 'UnauthorizedError') {

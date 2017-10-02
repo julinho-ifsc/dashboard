@@ -1,5 +1,10 @@
 import isDom from 'is-dom'
-import {removeChilds} from './utils'
+
+const removeChilds = element => {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild)
+  }
+}
 
 export default class Router {
   static navigate(route) {
