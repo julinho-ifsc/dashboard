@@ -80,7 +80,8 @@ module.exports = env => {
           use: {
             loader: 'svg-url-loader',
             options: {
-              limit: 4096
+              limit: 4096,
+              noquotes: true
             }
           }
         }

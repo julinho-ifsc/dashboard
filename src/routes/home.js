@@ -6,5 +6,5 @@ export default async function () {
     return
   }
   const {default: homeScreen} = await import('../screens/home')
-  app.appendChild(homeScreen())
+  return homeScreen()
 }

@@ -1,0 +1,20 @@
+:local .link {
+  color: rgba(0,0,0,.87);
+  text-decoration: none;
+
+  &:focus,
+  &:active,
+  &:hover {
+    color: #22a1c4;
+  }
+}
+
+:local .light {
+  color: #fff;
+
+  &:focus,
+  &:active,
+  &:hover {
+    color: color(#22a1c4 tint(60%));
+  }
+}

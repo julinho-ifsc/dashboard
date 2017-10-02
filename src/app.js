@@ -15,7 +15,7 @@ async function main() {
       },
       onUpdated() {
         window.location.reload()
-      },
+      }
     })
   }
 
@@ -24,6 +24,11 @@ async function main() {
   router.handleDefault('/', homeRoute)
   router.handleRoute('/login', loginRoute)
   router.listen()
+
+  window.addEventListener('logout', () => {
+    window.sessionStorage.clear()
+    Router.navigate('/login')
+  })
 }
 
 main()

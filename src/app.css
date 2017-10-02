@@ -21,3 +21,8 @@ body {
   min-height: 100vh;
   width: 100vw;
 }
+
+button {
+  appearance: none;
+  background-color: transparent;
+}

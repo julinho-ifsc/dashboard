@@ -1,4 +1,4 @@
-export default async function(app) {
+export default async function() {
   const {default: loginScreen} = await import('../screens/login')
-  app.appendChild(loginScreen())
+  return loginScreen()
 }

@@ -1,3 +1,4 @@
+import isDom from 'is-dom'
 import {removeChilds} from './utils'
 
 export default class Router {
@@ -19,18 +20,25 @@ export default class Router {
     this.defaultRoute = [route, handler]
   }
 
-  load() {
+  render(element) {
+    if (!isDom(element)) {
+      return
+    }
+
+    removeChilds(this.app)
+    this.app.appendChild(element)
+  }
+
+  async load() {
     const route = window.location.hash.substring(1)
 
     if (route === this.defaultRoute[0]) {
-      removeChilds(this.app)
-      this.defaultRoute[1](this.app)
+      this.render(await this.defaultRoute[1]())
       return
     }
 
     if (this.routes[route]) {
-      removeChilds(this.app)
-      this.routes[route](this.app)
+      this.render(await this.routes[route]())
       return
     }
 

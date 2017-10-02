@@ -54,6 +54,7 @@
     "xo": "^0.18.2"
   },
   "dependencies": {
+    "is-dom": "^1.0.9",
     "regenerator-runtime": "^0.11.0",
     "vanilla-dialogs": "0.0.2",
     "whatwg-fetch": "^2.0.3",
