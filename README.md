@@ -1,5 +1,8 @@
 # dashboard
-Dashboard para a controle da API de rotas
+
+[![Travis](https://img.shields.io/travis/julinho-ifsc/dashboard.svg)](https://travis-ci.org/julinho-ifsc/dashboard)
+
+> Dashboard para a controle da API de rotas
 
 ## Utilização
 
