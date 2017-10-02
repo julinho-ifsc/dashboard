@@ -112,7 +112,7 @@ module.exports = env => {
         name: 'vendor'
       }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': env.prod ? JSON.stringify('production'): JSON.stringify('development')
+        'process.env.NODE_ENV': env.prod ? JSON.stringify('production') : JSON.stringify('development')
       })
     ]
   }
@@ -123,10 +123,10 @@ module.exports = env => {
       ...config.plugins,
       new OfflinePlugin({
         AppCache: false,
-        ServiceWorker: { events: true },
+        ServiceWorker: {events: true}
       }),
       new webpack.HashedModuleIdsPlugin(),
-      new WebpackChunkHash(),
+      new WebpackChunkHash()
     ]
   }
 

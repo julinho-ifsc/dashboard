@@ -6,7 +6,12 @@ export default items => {
   const wrapper = document.createElement('nav')
   wrapper.classList.add(style.wrapper)
 
-  const brand = link({text: 'Dashboard', title: 'Dashboard', href: '#/', light: true})
+  const brand = link({
+    text: 'Dashboard',
+    title: 'Dashboard',
+    href: '#/',
+    light: true
+  })
   brand.classList.add(style.brand)
 
   const listElement = document.createElement('ul')

@@ -32,7 +32,7 @@ const routes = [
   }
 ]
 
-export default async function() {
+export default async function () {
   const wrapper = document.createElement('div')
   try {
     if (!window.sessionStorage.getItem('permissions')) {
@@ -46,8 +46,9 @@ export default async function() {
       .filter(permission => permission.read)
       .map(permission => permission.name)
 
-    const allowedRoutes = routes
-      .filter(route => allowedResources.includes(route.href.substring(2)))
+    const allowedRoutes = routes.filter(route =>
+      allowedResources.includes(route.href.substring(2))
+    )
 
     wrapper.appendChild(navbar(allowedRoutes))
 
@@ -55,7 +56,6 @@ export default async function() {
     title.textContent = 'Bem vindo!'
 
     wrapper.appendChild(container([title]))
-
   } catch (err) {
     if (err.name === 'UnauthorizedError') {
       await alert(err.message)
