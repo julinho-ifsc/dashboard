@@ -1,7 +1,9 @@
 import {alert} from 'vanilla-dialogs'
 import loginForm from '../../components/login-form'
 import loginService from '../../services/login'
+import {showLoader, hideLoader} from '../../core/loader'
 import Router from '../../core/router'
+import {setToken} from '../../core/token'
 
 export default () => {
   const formElement = loginForm()
@@ -16,10 +18,13 @@ export default () => {
     const password = passwordField.value
 
     try {
+      showLoader()
       const {token} = await loginService(email, password)
-      window.sessionStorage.setItem('token', token)
+      setToken(token)
       Router.navigate('/')
+      hideLoader()
     } catch (err) {
+      hideLoader()
       if (err.name === 'UnauthorizedError') {
         await alert(err.message)
         passwordField.value = ''
@@ -31,6 +36,7 @@ export default () => {
         return
       }
 
+      await alert('Não foi possível fazer o login, tente novamente mais tarde.')
       console.error(err)
     }
   })

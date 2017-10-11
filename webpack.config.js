@@ -4,7 +4,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const OfflinePlugin = require('offline-plugin')
 const WebpackChunkHash = require('webpack-chunk-hash')
 const cssnext = require('postcss-cssnext')
 const cssnano = require('cssnano')
@@ -15,7 +14,7 @@ module.exports = env => {
   const config = {
     entry: {
       app: './src/app.js',
-      vendor: ['offline-plugin/runtime', 'regenerator-runtime/runtime', 'wretch', 'whatwg-fetch']
+      vendor: ['regenerator-runtime/runtime', 'wretch', 'whatwg-fetch']
     },
     output: {
       filename: '[name].[hash].js',
@@ -121,10 +120,6 @@ module.exports = env => {
     config.output.filename = '[name].[chunkhash].js'
     config.plugins = [
       ...config.plugins,
-      new OfflinePlugin({
-        AppCache: false,
-        ServiceWorker: {events: true}
-      }),
       new webpack.HashedModuleIdsPlugin(),
       new WebpackChunkHash()
     ]
