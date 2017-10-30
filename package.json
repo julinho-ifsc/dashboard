@@ -57,7 +57,9 @@
     "xo": "^0.18.2"
   },
   "dependencies": {
+    "express": "^4.16.2",
     "is-dom": "^1.0.9",
+    "morgan": "^1.9.0",
     "regenerator-runtime": "^0.11.0",
     "vanilla-dialogs": "0.0.2",
     "whatwg-fetch": "^2.0.3",

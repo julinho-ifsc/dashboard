@@ -18,8 +18,8 @@ module.exports = env => {
     },
     output: {
       filename: '[name].[hash].js',
-      path: path.resolve(__dirname, 'public'),
-      publicPath: '/'
+      path: path.resolve(__dirname, 'public/static'),
+      publicPath: '/static/'
     },
     module: {
       rules: [
@@ -88,27 +88,14 @@ module.exports = env => {
     },
     plugins: [
       new webpack.optimize.ModuleConcatenationPlugin(),
-      new CleanWebpackPlugin(['public/*.js', 'public/*.css', 'public/.html']),
-      new ExtractTextPlugin('style.[contenthash].css'),
-      new FriendlyErrorsWebpackPlugin({
-        onErrors(severity, errors) {
-          if (severity !== 'error') {
-            return
-          }
-          const error = errors[0]
-
-          notifier.notify({
-            title: 'Webpack error',
-            message: severity + ': ' + error.name,
-            subtitle: error.file || ''
-          })
-        }
-      }),
-      new HtmlWebpackPlugin({
-        template: 'src/index.html'
-      }),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor'
+      }),
+      new CleanWebpackPlugin(['public/static/*.js', 'public/static/*.css', 'public/*.html']),
+      new ExtractTextPlugin('style.[contenthash].css'),
+      new HtmlWebpackPlugin({
+        template: 'src/index.html',
+        filename: path.resolve(__dirname, 'public/index.html')
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': env.prod ? JSON.stringify('production') : JSON.stringify('development')
@@ -122,6 +109,24 @@ module.exports = env => {
       ...config.plugins,
       new webpack.HashedModuleIdsPlugin(),
       new WebpackChunkHash()
+    ]
+  } else {
+    config.plugins = [
+      ...config.plugins,
+      new FriendlyErrorsWebpackPlugin({
+        onErrors(severity, errors) {
+          if (severity !== 'error') {
+            return
+          }
+          const error = errors[0]
+
+          notifier.notify({
+            title: 'Webpack error',
+            message: severity + ': ' + error.name,
+            subtitle: error.file || ''
+          })
+        }
+      })
     ]
   }
 
