@@ -7,26 +7,7 @@
 ## Utilização
 
 ```sh
-# Instale as dependências
-$ npm install
-
-# Faça o build do projeto
-$ npm run build
-
-# Agora uma pasta public foi criado os arquivos prontos para deploy
-```
-
-## Desenvolvimento
-
-```sh
-# Instale as dependências
-$ npm install
-
-# Inicie o webpack em modo e levante um servidor de desenvolvimento
-$ npm start
-
-# Agora um servidor de desenvolvimento com live-reloading ativada
-# está disponível em localhost:3000
+$ docker run --env PORT=3000 --env NODE_ENV=production -p 3000:3000 julinho/dashboard
 ```
 
 ## Licença
