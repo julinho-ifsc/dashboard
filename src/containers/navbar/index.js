@@ -5,44 +5,39 @@ const routes = [
   {
     title: 'Cadastro de pontos',
     text: 'Pontos',
-    href: '#/points'
+    href: '/points'
   },
   {
     title: 'Cadastro de rotas',
     text: 'Rotas',
-    href: '#/routes'
+    href: '/routes'
   },
   {
     title: 'Cadastro de usuários',
     text: 'Usuários',
-    href: '#/users'
+    href: '/users'
   },
   {
     title: 'Cadastro de grupos',
     text: 'Grupos',
-    href: '#/roles'
+    href: '/roles'
   },
   {
     title: 'Cadastro de clientes',
     text: 'Clientes',
-    href: '#/clients'
+    href: '/clients'
   }
 ]
 
 export default async function () {
-  if (!window.sessionStorage.getItem('permissions')) {
-    const permissions = await permissionsService()
-    console.log(permissions)
-    window.sessionStorage.setItem('permissions', JSON.stringify(permissions))
-  }
-  const permissions = JSON.parse(window.sessionStorage.getItem('permissions'))
+  const permissions = await permissionsService()
 
   const allowedResources = permissions
     .filter(permission => permission.read)
     .map(permission => permission.name)
 
   const allowedRoutes = routes.filter(route =>
-    allowedResources.includes(route.href.substring(2))
+    allowedResources.includes(route.href.substring(1))
   )
 
   return navbar(allowedRoutes)

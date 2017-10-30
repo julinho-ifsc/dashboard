@@ -1,5 +1,5 @@
 import {alert} from 'vanilla-dialogs'
-import Router from '../../core/router'
+import router from '../../core/router'
 import navbar from '../../containers/navbar'
 import container from '../../components/container'
 
@@ -16,7 +16,7 @@ export default async function () {
     if (err.name === 'UnauthorizedError') {
       await alert(err.message)
       window.sessionStorage.clear()
-      Router.navigate('/login')
+      router.navigate('/login')
       return
     }
 

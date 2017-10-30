@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Dashboard para a controle da API de rotas",
   "scripts": {
-    "prelint": "prettier --single-quote --no-semi --no-bracket-spacing --trailing-comma none --write \"src/**/*.js\"",
+    "prelint": "prettier --single-quote --no-semi --no-bracket-spacing --trailing-comma none --write \"src/**/*.js\" --write index.js --write webpack.config.js",
     "lint": "xo --fix",
     "build:watch": "webpack -w --hide-modules --colors --progress --env.prod=0",
     "serve": "browser-sync start --server \"public\" --files \"public\" --port 3000",
@@ -60,6 +60,7 @@
     "express": "^4.16.2",
     "is-dom": "^1.0.9",
     "morgan": "^1.9.0",
+    "navigo": "^5.3.3",
     "regenerator-runtime": "^0.11.0",
     "vanilla-dialogs": "0.0.2",
     "whatwg-fetch": "^2.0.3",

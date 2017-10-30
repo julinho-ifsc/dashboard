@@ -3,7 +3,7 @@ import {getToken} from '../core/token'
 
 import {InternalServerError, UnauthorizedError} from './errors'
 
-export const BASE_URL = 'http://192.168.99.100:8080'
+export const BASE_URL = 'https://marvietech.com.br/app/api'
 
 export const handleError = err => {
   console.error(err)

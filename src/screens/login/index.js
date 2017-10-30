@@ -2,7 +2,7 @@ import {alert} from 'vanilla-dialogs'
 import loginForm from '../../components/login-form'
 import loginService from '../../services/login'
 import {showLoader, hideLoader} from '../../core/loader'
-import Router from '../../core/router'
+import router from '../../core/router'
 import {setToken} from '../../core/token'
 
 export default () => {
@@ -21,7 +21,7 @@ export default () => {
       showLoader()
       const {token} = await loginService(email, password)
       setToken(token)
-      Router.navigate('/')
+      router.navigate('/')
       hideLoader()
     } catch (err) {
       hideLoader()
@@ -40,5 +40,6 @@ export default () => {
       console.error(err)
     }
   })
+
   return formElement
 }

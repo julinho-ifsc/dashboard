@@ -91,14 +91,20 @@ module.exports = env => {
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor'
       }),
-      new CleanWebpackPlugin(['public/static/*.js', 'public/static/*.css', 'public/*.html']),
+      new CleanWebpackPlugin([
+        'public/static/*.js',
+        'public/static/*.css',
+        'public/*.html'
+      ]),
       new ExtractTextPlugin('style.[contenthash].css'),
       new HtmlWebpackPlugin({
         template: 'src/index.html',
         filename: path.resolve(__dirname, 'public/index.html')
       }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': env.prod ? JSON.stringify('production') : JSON.stringify('development')
+        'process.env.NODE_ENV': env.prod ?
+          JSON.stringify('production') :
+          JSON.stringify('development')
       })
     ]
   }
