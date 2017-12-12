@@ -1,6 +1,6 @@
 import Navigo from 'navigo'
 import {getToken} from './token'
-import {homeRoute, loginRoute, pointsRoute} from './routes'
+import {homeRoute, loginRoute, pointsRoute, routesRoute} from './routes'
 
 const router = new Navigo(null)
 
@@ -8,6 +8,7 @@ router
   .on(homeRoute)
   .on('/login', loginRoute)
   .on('/points', pointsRoute)
+  .on('/routes', routesRoute)
   .notFound(() => {
     router.navigate('/')
   })

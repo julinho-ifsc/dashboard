@@ -1,0 +1,18 @@
+:local .list {
+  width: 100%;
+
+  & dl, & dd {
+    padding-left: 20px;
+  }
+
+  & hr {
+    background-color: rgba(0,0,0,.87);
+    margin: 10px 0;
+    height: 1px;
+    width: 100%;
+  }
+}
+
+:local .wrapper {
+  padding: 80px 20px 20px;
+}

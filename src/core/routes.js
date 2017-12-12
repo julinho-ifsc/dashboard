@@ -12,3 +12,7 @@ export async function pointsRoute() {
   const {default: pointsScreen} = await import('../screens/points')
   window.app.appendChild(await pointsScreen())
 }
+export async function routesRoute() {
+  const {default: routesScreen} = await import('../screens/routes')
+  window.app.appendChild(await routesScreen())
+}
